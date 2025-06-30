@@ -42,6 +42,8 @@ es: &DEFAULT_ES
       section: servicios
     - title: "Portafolio"
       section: portafolio
+    - title: "담보대출"
+      url: /blog/
     - title: "Sobre Nosotros"
       section: nosotros
     - title: "Cronología"
