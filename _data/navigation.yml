@@ -9,7 +9,7 @@
 
 # English (default)
 # -----------------
-kr: &DEFAULT_KO
+ko-KR: &DEFAULT_KO
   nav:
     - title: "Services"
       section: services
