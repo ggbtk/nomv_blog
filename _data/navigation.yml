@@ -35,6 +35,8 @@ en-GB:
   <<: *DEFAULT_EN
 en-AU:
   <<: *DEFAULT_EN
+ko-KR:
+  <<: *DEFAULT_KR  # ← 이 부분이 없거나 잘못됐을 때 오류
 
 # Spanish
 # -------
