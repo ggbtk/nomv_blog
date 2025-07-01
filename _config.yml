@@ -35,7 +35,7 @@ collections:
   portfolio:
 
 markdown: kramdown
-
+permalink: /:categories/:title/
 sass:
   style: compressed
 
