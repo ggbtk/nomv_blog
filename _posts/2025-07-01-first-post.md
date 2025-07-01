@@ -1,10 +1,11 @@
 ---
 layout: post
-title: "무입고 자동차담보대출, 이런 분께 추천!"
+title: "카드 없이 대출받는 방법"
 date: 2025-07-01
-categories: [자동차대출, 대구]
-tags: [무입고, 당일대출, 무운행]
-image: /assets/img/posts/loan1.jpg
+categories: [금융정보]
+tags: [현금화, 급전, 대출]
+image: /assets/img/posts/sample.jpg
+excerpt: /assets/img/posts/loan1.jpg
 ---
 
 무입고 담보대출은 차량을 맡기지 않고도 대출이 가능한 방식으로...
