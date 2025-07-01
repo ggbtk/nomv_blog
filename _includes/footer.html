@@ -1,13 +1,13 @@
-<footer class="bg-gray-900 text-white py-8 text-sm">
+<footer class="bg-gray-900 text-white py-8 text-sm pb-24">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between gap-8">
 
     <!-- 로고 및 안내 -->
     <div class="max-w-xs">
       <img src="/assets/img/default-thumb.jpg" alt="로고" class="h-8 mb-3">
       <p class="text-gray-300 leading-relaxed">
-        이자율: 월 1.66% 이내<br>
-        수수료 및 연체이자 無, 조기상환수수료 無<br>
-        ※ 중개수수료 요구 시 불법
+이자율 : 월1.66% 이내 년 20% (최단 30일, 최장 1년) 이내 (취급 수수료 및 연체이자 등 별도 비용 없음 대출시 귀하의신용등급이 하락할 수 있습니다.<br>
+채무의 조기상환수수료율 등 조기상환 조건 없음<br>
+※ 이자 외 별도로 중개수수료를 취하는 것은 불법이며 과도한 빚은 당신에게 큰 불행을 안겨줄 수 있습니다.
       </p>
     </div>
 
@@ -15,10 +15,12 @@
     <div>
       <h6 class="font-semibold mb-2">서비스</h6>
       <ul class="space-y-1 text-gray-400">
-        <li>자동차 담보 대출</li>
-        <li>부동산 담보 대출</li>
-        <li>신용도 하락 시 담보 대출</li>
-        <li>상품 담보 대출</li>
+      {% assign nav_items = site.data.navigation[site.locale].nav %}
+      {% for item in nav_items %}
+      <li>
+        <a href="{{ item.url | default: '#' }}" class="hover:text-yellow-400">{{ item.title }}</a>
+      </li>
+      {% endfor %}
       </ul>
     </div>
 
@@ -26,9 +28,9 @@
     <div>
       <h6 class="font-semibold mb-2">회사 정보</h6>
       <ul class="space-y-1 text-gray-400">
-        <li>회사 소개</li>
-        <li>이용약관</li>
-        <li>개인정보처리방침</li>
+                            <li><a href="#" class="hover:text-white">회사 소개</a></li>
+                            <li><a href="#" class="hover:text-white">이용약관</a></li>
+                            <li><a href="#" class="hover:text-white">개인정보처리방침</a></li>
       </ul>
     </div>
 
