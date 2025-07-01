@@ -1,0 +1,42 @@
+---
+layout: default
+---
+
+<section class="py-5">
+  <div class="container">
+    <div class="mb-4">
+      <a href="/blog" class="btn btn-outline-secondary btn-sm">&larr; 목록으로</a>
+    </div>
+
+    <article>
+      <h1 class="mb-3">{{ page.title }}</h1>
+
+      <div class="text-muted mb-2">
+        작성일: {{ page.date | date: "%Y년 %m월 %d일" }}
+        {% if page.categories %}
+        | 카테고리:
+        {% for category in page.categories %}
+          <span class="badge bg-secondary">{{ category }}</span>
+        {% endfor %}
+        {% endif %}
+      </div>
+
+      {% if page.image %}
+        <img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid mb-4">
+      {% endif %}
+
+      <div class="post-content" style="line-height: 1.8;">
+        {{ content }}
+      </div>
+
+      {% if page.tags %}
+        <div class="mt-4">
+          <h6>Tags:</h6>
+          {% for tag in page.tags %}
+            <span class="badge bg-primary">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </article>
+  </div>
+</section>
