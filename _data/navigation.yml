@@ -9,7 +9,26 @@
 
 # English (default)
 # -----------------
-ko-KR: &DEFAULT_KO
+ko-KR: &DEFAULT_KR
+  nav:
+    - title: "Services"
+      section: services
+    - title: "Portfolio"
+      section: portfolio
+    - title: "게시판"
+      url: /blog/
+    - title: "About"
+      section: about
+    - title: "Timeline"
+      section: timeline
+    - title: "Team"
+      section: team
+    - title: "Contact"
+      section: contact
+    - title: "Theme Source"
+      url: https://github.com/raviriley/agency-jekyll-theme/
+      
+en: &DEFAULT_EN
   nav:
     - title: "Services"
       section: services
@@ -35,8 +54,6 @@ en-GB:
   <<: *DEFAULT_EN
 en-AU:
   <<: *DEFAULT_EN
-ko-KR:
-  <<: *DEFAULT_KR  # ← 이 부분이 없거나 잘못됐을 때 오류
 
 # Spanish
 # -------
