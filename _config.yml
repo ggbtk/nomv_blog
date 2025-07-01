@@ -12,6 +12,7 @@
 # in the templates via {{ site.myvariable }}.
 
 #theme: jekyll-agency
+theme: null
 remote_theme: raviriley/agency-jekyll-theme
 
 url    : "https://자동차대출.kr" # the base hostname & protocol for your site, e.g. http://example.com
