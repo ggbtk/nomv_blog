@@ -36,3 +36,25 @@
 .call-link:hover {
   opacity: 0.9;
 }
+
+.action-bar {
+  z-index: 1050;
+  font-size: 16px;
+}
+
+.kakao-link {
+  background-color: #ffeb00;
+  color: #000;
+  text-decoration: none;
+}
+
+.call-link {
+  background-color: #1d4ed8;
+  color: #fff;
+  text-decoration: none;
+}
+
+.kakao-link:hover,
+.call-link:hover {
+  opacity: 0.9;
+}
