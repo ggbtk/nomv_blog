@@ -5,3 +5,34 @@
 .card-title a:hover {
   color: #007bff;
 }
+
+.card:hover {
+  transform: translateY(-3px);
+  transition: all 0.3s ease;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+}
+.btn {
+  padding: 0.7em 1.2em;
+  font-weight: bold;
+}
+
+.action-bar {
+  z-index: 9999;
+}
+
+.kakao-link {
+  background-color: #ffeb00;
+  color: #000;
+  text-decoration: none;
+}
+
+.call-link {
+  background-color: #1d4ed8;
+  color: #fff;
+  text-decoration: none;
+}
+
+.kakao-link:hover,
+.call-link:hover {
+  opacity: 0.9;
+}
