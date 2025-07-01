@@ -39,6 +39,9 @@ markdown: kramdown
 sass:
   style: compressed
 
+include:
+  - assets
+
 defaults:
   -
     scope:
