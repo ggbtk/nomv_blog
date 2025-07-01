@@ -32,6 +32,9 @@ analytics:
   google: #Google Analytics tracking code here
 
 collections:
+  cases:
+    output: true
+    permalink: /cases/:title/
   portfolio:
 
 markdown: kramdown
