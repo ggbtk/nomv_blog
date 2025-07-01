@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<section class="py-5">
+  <div class="container">
+    <h1 class="mb-4">🏠 메인 페이지</h1>
+    <p>이곳은 커스텀한 메인 페이지입니다. 블로그나 서비스 소개 등을 여기에 넣을 수 있습니다.</p>
+
+    <!-- 최근 글 목록 표시 -->
+    <h2 class="mt-5">📄 최신 글</h2>
+    <ul>
+      {% for post in site.posts limit:5 %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a> - {{ post.date | date: "%Y-%m-%d" }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+</section>
