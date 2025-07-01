@@ -38,6 +38,32 @@ layout: default
         </div>
       {% endif %}
     </article>
+	
+	
+	<!-- 여기에 추천글, 관련글 코드 추가 시작 -->
+{% comment %} --- 추천글 카드 --- {% endcomment %}
+<hr class="my-5">
+<h3>📌 추천글</h3>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+  {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | slice: 0, 3 %}
+  {% for post in recent_posts %}
+    <div class="col">
+      <a href="{{ post.url }}" class="text-decoration-none text-dark">
+        <div class="card h-100 border-0 shadow-sm hover-shadow">
+          {% if post.image %}
+            <img src="{{ post.image }}" class="card-img-top" alt="{{ post.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ post.title }}</h5>
+            <p class="card-text">{{ post.excerpt | strip_html | truncate: 80 }}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+</div>
+<!-- 여기에 추천글 코드 추가 끝 -->
+
 <hr class="my-5">
 
 <div class="row g-4">
