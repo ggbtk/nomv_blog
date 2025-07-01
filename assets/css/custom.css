@@ -58,3 +58,80 @@
 .call-link:hover {
   opacity: 0.9;
 }
+
+  .form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto;
+      text-align: center;
+      box-sizing: border-box;
+  }
+  .form-container input[type="text"],
+  .form-container input[type="tel"] {
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      box-sizing: border-box;
+  }
+  .form-container .phone-group {
+      display: flex;
+      gap: 10px;
+  }
+  .form-container .phone-group input {
+      flex: 1;
+  }
+  .checkbox-group {
+      display: flex;
+      align-items: center;
+      margin: 10px 0;
+  }
+  .checkbox-group input {
+      margin-right: 8px;
+  }
+  .form-container button {
+      width: 100%;
+      background-color: #0066ff;
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+  }
+  .form-container button:hover {
+      background-color: #004ecc;
+  }
+  .terms-link {
+      margin-left: auto;
+      font-size: 12px;
+      color: #666;
+      text-decoration: underline;
+      cursor: pointer;
+  }
+
+          :where([class^="ri-"])::before { content: "\f3c2"; }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+        }
+        .hero-bg {
+            background-image: url('https://readdy.ai/api/search-image?query=A%20professional%20and%20clean%20background%20image%20with%20soft%20blue%20gradient.%20The%20left%20side%20has%20a%20clean%20white%20space%20for%20text%2C%20while%20the%20right%20side%20shows%20gift%20cards%2C%20mobile%20vouchers%2C%20and%20gift%20certificates%20in%20a%20neat%20arrangement.%20The%20transition%20between%20white%20and%20image%20is%20smooth%20and%20natural.%20The%20overall%20feel%20is%20trustworthy%20and%20professional.&width=1280&height=720&seq=1&orientation=landscape');
+            background-size: cover;
+            background-position: center;
+        }
+        .kakao-button {
+            background-color: #FAE100;
+            color: #3A1D1D;
+        }
+        .phone-button {
+            background-color: #0066CC;
+            color: white;
+        }
+        input:focus {
+            outline: none;
+        }
