@@ -5,6 +5,8 @@ gem "jekyll-remote-theme"
 
 group :jekyll_plugins do
   gem "jekyll-feed", "~> 0.6"
+  gem "jekyll-seo-tag"
+  gem "jekyll-sitemap"   # ✅ 이 줄 추가
   # gem "github-pages" # https://github.com/github/pages-gem
 end
 

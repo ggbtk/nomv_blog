@@ -2,113 +2,91 @@
 layout: default
 ---
 
-<section class="py-5">
-  <div class="container">
-    <div class="mb-4">
-      <a href="/blog" class="btn btn-outline-secondary btn-sm">&larr; 목록으로</a>
+<section class="max-w-screen-xl mx-auto pt-24 px-4 pb-10">
+  <div class="mb-6">
+    <a href="/blog" class="inline-block bg-gray-200 text-gray-700 px-4 py-2 rounded hover:bg-gray-300 text-sm">← 목록으로</a>
+  </div>
+
+  <article class="bg-white p-6 rounded shadow">
+    <h1 class="text-2xl font-bold mb-3">{{ page.title }}</h1>
+
+    <div class="text-sm text-gray-500 mb-4">
+      작성일: {{ page.date | date: "%Y년 %m월 %d일" }}
+      {% if page.categories %}
+      | 카테고리:
+      {% for category in page.categories %}
+        <span class="bg-gray-800 text-white px-2 py-1 text-xs rounded">{{ category }}</span>
+      {% endfor %}
+      {% endif %}
     </div>
 
-    <article>
-      <h1 class="mb-3">{{ page.title }}</h1>
+    {% if page.image %}
+      <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-auto mb-6 rounded">
+    {% endif %}
 
-      <div class="text-muted mb-2">
-        작성일: {{ page.date | date: "%Y년 %m월 %d일" }}
-        {% if page.categories %}
-        | 카테고리:
-        {% for category in page.categories %}
-          <span class="badge bg-secondary">{{ category }}</span>
+    <div class="prose max-w-none">
+      {{ content }}
+    </div>
+
+    {% if page.tags %}
+      <div class="mt-6">
+        <h6 class="font-semibold mb-2">Tags:</h6>
+        {% for tag in page.tags %}
+          <span class="inline-block bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs">#{{ tag }}</span>
         {% endfor %}
+      </div>
+    {% endif %}
+  </article>
+
+  <hr class="my-10">
+  <h3 class="text-xl font-bold mb-4">📌 추천글</h3>
+  <div class="grid md:grid-cols-3 gap-6">
+    {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | slice: 0, 3 %}
+    {% for post in recent_posts %}
+    <div class="bg-white rounded shadow hover:shadow-lg transition duration-300">
+      <a href="{{ post.url }}" class="block">
+        {% if post.image %}
+          <img src="{{ post.image }}" class="w-full h-48 object-cover rounded-t" alt="{{ post.title }}">
         {% endif %}
-      </div>
-
-      {% if page.image %}
-        <img src="{{ page.image }}" alt="{{ page.title }}" class="img-fluid mb-4">
-      {% endif %}
-
-      <div class="post-content" style="line-height: 1.8;">
-        {{ content }}
-      </div>
-
-      {% if page.tags %}
-        <div class="mt-4">
-          <h6>Tags:</h6>
-          {% for tag in page.tags %}
-            <span class="badge bg-primary">{{ tag }}</span>
-          {% endfor %}
-        </div>
-      {% endif %}
-    </article>
-	
-	
-	<!-- 여기에 추천글, 관련글 코드 추가 시작 -->
-{% comment %} --- 추천글 카드 --- {% endcomment %}
-<hr class="my-5">
-<h3>📌 추천글</h3>
-<div class="row row-cols-1 row-cols-md-3 g-4">
-  {% assign recent_posts = site.posts | where_exp: "post", "post.url != page.url" | slice: 0, 3 %}
-  {% for post in recent_posts %}
-    <div class="col">
-      <a href="{{ post.url }}" class="text-decoration-none text-dark">
-        <div class="card h-100 border-0 shadow-sm hover-shadow">
-          {% if post.image %}
-            <img src="{{ post.image }}" class="card-img-top" alt="{{ post.title }}">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ post.title }}</h5>
-            <p class="card-text">{{ post.excerpt | strip_html | truncate: 80 }}</p>
-          </div>
+        <div class="p-4">
+          <h5 class="text-lg font-semibold">{{ post.title }}</h5>
+          <p class="text-sm text-gray-600 mt-1">{{ post.excerpt | strip_html | truncate: 80 }}</p>
         </div>
       </a>
     </div>
-  {% endfor %}
-</div>
-<!-- 여기에 추천글 코드 추가 끝 -->
+    {% endfor %}
+  </div>
 
-<hr class="my-5">
+  <hr class="my-10">
 
-<div class="row g-4">
-  {% if page.previous %}
-  <div class="col-md-6">
-    <a href="{{ page.previous.url }}" class="text-decoration-none text-dark">
-      <div class="card h-100 border-0 shadow-sm hover-shadow">
-        {% if page.previous.image %}
-          <img src="{{ page.previous.image }}" class="card-img-top" alt="{{ page.previous.title }}">
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">← 이전 글</h5>
-          <h6 class="card-subtitle mb-2">{{ page.previous.title }}</h6>
-          {% if page.previous.excerpt %}
-            <p class="card-text">{{ page.previous.excerpt | strip_html | truncate: 100 }}</p>
-          {% endif %}
-        </div>
+  <div class="grid md:grid-cols-2 gap-6">
+    {% if page.previous %}
+    <a href="{{ page.previous.url }}" class="block bg-white rounded shadow hover:shadow-lg transition duration-300">
+      {% if page.previous.image %}
+        <img src="{{ page.previous.image }}" class="w-full h-48 object-cover rounded-t" alt="{{ page.previous.title }}">
+      {% endif %}
+      <div class="p-4">
+        <h5 class="text-sm text-gray-500">← 이전 글</h5>
+        <h6 class="text-lg font-bold">{{ page.previous.title }}</h6>
+        <p class="text-sm text-gray-600 mt-1">{{ page.previous.excerpt | strip_html | truncate: 100 }}</p>
       </div>
     </a>
-  </div>
-  {% endif %}
+    {% endif %}
 
-  {% if page.next %}
-  <div class="col-md-6">
-    <a href="{{ page.next.url }}" class="text-decoration-none text-dark">
-      <div class="card h-100 border-0 shadow-sm hover-shadow">
-        {% if page.next.image %}
-          <img src="{{ page.next.image }}" class="card-img-top" alt="{{ page.next.title }}">
-        {% endif %}
-        <div class="card-body">
-          <h5 class="card-title">다음 글 →</h5>
-          <h6 class="card-subtitle mb-2">{{ page.next.title }}</h6>
-          {% if page.next.excerpt %}
-            <p class="card-text">{{ page.next.excerpt | strip_html | truncate: 100 }}</p>
-          {% endif %}
-        </div>
+    {% if page.next %}
+    <a href="{{ page.next.url }}" class="block bg-white rounded shadow hover:shadow-lg transition duration-300">
+      {% if page.next.image %}
+        <img src="{{ page.next.image }}" class="w-full h-48 object-cover rounded-t" alt="{{ page.next.title }}">
+      {% endif %}
+      <div class="p-4">
+        <h5 class="text-sm text-gray-500">다음 글 →</h5>
+        <h6 class="text-lg font-bold">{{ page.next.title }}</h6>
+        <p class="text-sm text-gray-600 mt-1">{{ page.next.excerpt | strip_html | truncate: 100 }}</p>
       </div>
     </a>
-  </div>
-  {% endif %}
-</div>
-
+    {% endif %}
   </div>
 
-  <!-- 기존 푸터 아래에 삽입 -->
-{% include footer.html %}
-{% include fixed-action-bar.html %}
+  {% include footer.html %}
+  {% include fixed-action-bar.html %}
 </section>
