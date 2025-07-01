@@ -5,7 +5,6 @@ date: 2025-07-01
 categories: [금융정보]
 tags: [현금화, 급전, 대출]
 image: /assets/img/posts/sample.jpg
-excerpt: /assets/img/posts/loan1.jpg
 ---
 
 무입고 담보대출은 차량을 맡기지 않고도 대출이 가능한 방식으로...
