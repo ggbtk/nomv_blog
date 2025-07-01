@@ -3,3 +3,67 @@ layout: default
 title: 오시는길
 permalink: /location/
 ---
+
+
+
+<!-- 오시는 길 섹션 -->
+<section class="bg-white p-6 rounded-lg shadow-md mt-8 text-center ">
+<div class="text-center space-y-4 mb-6">
+  <!-- 전화 상담 버튼 -->
+  <a href="tel:+01043058520" class="inline-block px-8 py-3 bg-blue-600 text-white text-lg rounded-full hover:bg-blue-700">상담신청 010-4305-8520</a>
+  
+  <!-- 카카오톡 상담 버튼 -->
+  <a href="http://qr.kakao.com/talk/Mn4n0eBRcrJ.Lg7JzM6792eJ8pI-" target="_blank" class="inline-block px-8 py-3 bg-yellow-500 text-white text-lg rounded-full hover:bg-yellow-600">카카오톡 ID : NOMV</a>
+</div>
+
+  <h2 class="text-2xl font-semibold text-gray-800 mb-6">오시는 길</h2>
+  <p class="text-gray-700 mb-4">저희 사무실로 오시는 방법은 아래 약도를 참고해주세요. 자세한 내용은 네이버 플레이스를 확인해주세요.</p>
+  
+  <!-- 약도 이미지 -->
+  <img src="/assets/img/maps.png" alt="오시는 길 약도" class="max-w-md h-auto rounded-lg mb-4 mx-auto">
+  
+  <!-- 오시는 길 설명 추가 -->
+  <p class="text-gray-700 mb-4">월배이마트에서 유니클로 대구대천점 방향으로 쭉 걸어오시면,</p>
+  <p class="text-gray-700 mb-4">무운행파이낸셜대부' 간판이 크게 보입니다. 노란색 간판이 눈에 잘 띄며, 1층에 위치해 있어 쉽게 찾으실 수 있어요!</p>
+  <p class="text-gray-700 mb-4">노란색 간판이 눈에 잘 띄며, 1층에 위치해 있어 쉽게 찾으실 수 있어요!</p>
+  <p id="address" class="text-gray-700 mb-4 cursor-pointer text-blue-600 font-semibold text-lg py-3 px-6 rounded-lg border-2 border-blue-600 hover:bg-blue-100 hover:text-blue-800 transition duration-300" onclick="copyAddress()">주소 : 대구광역시 달서구 진천로 114 (클릭시 주소가 복사 됩니다.)</p>
+
+  <p id="copy-message" class="text-sm text-green-600 hidden">클릭 시 주소가 복사되었습니다!</p>
+
+  <!-- 네이버 플레이스 링크 -->
+  <p class="text-gray-700 mb-4 text-center">자세한 위치 정보와 추가 안내는 
+    <a href="https://map.naver.com/p/entry/place/2034922355" target="_blank" 
+       class="inline-block px-6 py-3 bg-blue-600 text-white text-lg font-semibold rounded-full hover:bg-blue-700 transition duration-300">
+      네이버 플레이스
+    </a>
+  에서 확인하실 수 있습니다.
+  </p>
+</section>
+
+<script>
+  function copyAddress() {
+    // 복사할 텍스트
+    const addressText = "대구광역시 달서구 진천로 114";
+    
+    // 임시 textarea 생성
+    const textarea = document.createElement("textarea");
+    textarea.value = addressText;
+    document.body.appendChild(textarea);
+    
+    // 텍스트 선택 및 복사
+    textarea.select();
+    document.execCommand("copy");
+    
+    // 임시 textarea 제거
+    document.body.removeChild(textarea);
+    
+    // 사용자에게 복사 완료 메시지 표시
+    const message = document.getElementById("copy-message");
+    message.classList.remove("hidden");
+    
+    // 2초 후 메시지 숨기기
+    setTimeout(() => {
+      message.classList.add("hidden");
+    }, 2000);
+  }
+</script>
