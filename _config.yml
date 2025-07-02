@@ -45,6 +45,10 @@ sass:
 include:
   - assets
 
+feed:
+  path: rss.xml       # 기본은 feed.xml
+  posts_limit: 100
+
 defaults:
   -
     scope:
