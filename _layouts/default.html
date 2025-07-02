@@ -8,6 +8,14 @@
   <!-- SEO 메타 태그 -->
   <meta name="description" content="{{ site.description }}">
   <meta name="author" content="{{ site.author }}">
+  <meta name="robots" content="index,follow">
+  <link rel="icon" href="/favicon.ico">
+  <!-- Open Graph -->
+  <meta property="og:title" content="{{ page.title | default: site.title }}">
+  <meta property="og:description" content="{{ page.description | default: site.description }}">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}/assets/img/default-thumb.jpg">
 
   <!-- favicon -->
   <link rel="icon" href="{{ '/assets/img/favicon.ico' | relative_url }}">
