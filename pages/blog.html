@@ -53,10 +53,10 @@ permalink: /blog/
     <div class="bg-white rounded shadow hover:shadow-lg transition duration-300 post-card"
          data-categories="{{ post.categories | join: ',' }}">
       <div class="p-5">
-        <h3 class="text-lg font-bold mb-2">
+        <h3 class="text-lg font-bold mb-2 post-title">
           <a href="{{ post.url | relative_url }}" class="hover:text-blue-600">{{ post.title }}</a>
         </h3>
-        <p class="text-sm text-gray-600 mb-4">{{ post.excerpt | strip_html | truncate: 100 }}</p>
+        <p class="text-sm text-gray-600 mb-4 post-content">{{ post.excerpt | strip_html | truncate: 100 }}</p>
         <a href="{{ post.url | relative_url }}" class="text-blue-500 hover:underline text-sm">자세히 보기 →</a>
       </div>
       <div class="px-5 pb-3 text-xs text-gray-400 flex justify-between">
@@ -76,27 +76,33 @@ permalink: /blog/
 
 <!-- ✅ 검색 필터링 JS -->
 <script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const form = document.getElementById("search-form");
-    const input = document.getElementById("search-input");
-    const posts = document.querySelectorAll(".post-card");
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.getElementById("search-form");
+  const input = document.getElementById("search-input");
+  const posts = document.querySelectorAll(".post-card");
 
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      const keyword = input.value.toLowerCase();
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    const keyword = input.value.toLowerCase();
 
-      posts.forEach(post => {
-        const title = post.querySelector(".post-title").textContent.toLowerCase();
-        const content = post.querySelector(".post-content").textContent.toLowerCase();
+    posts.forEach(post => {
+      const titleElement = post.querySelector(".post-title");
+      const contentElement = post.querySelector(".post-content");
+
+      // titleElement와 contentElement가 null이 아니어야만 .textContent에 접근
+      if (titleElement && contentElement) {
+        const title = titleElement.textContent.toLowerCase();
+        const content = contentElement.textContent.toLowerCase();
 
         if (title.includes(keyword) || content.includes(keyword)) {
           post.classList.remove("hidden");
         } else {
           post.classList.add("hidden");
         }
-      });
+      }
     });
   });
+});
 </script>
 
 <script>
