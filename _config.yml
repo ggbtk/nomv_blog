@@ -47,6 +47,8 @@ include:
 
 feed:
   path: rss.xml       # 기본은 feed.xml
+  id: https://자동차대출.kr/rss.xml
+  baseurl: ""   # baseurl 꼭 비워야 실제 루트 도메인 기준
   posts_limit: 100
 
 defaults:
