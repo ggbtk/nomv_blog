@@ -38,6 +38,9 @@ permalink: /rss.xml
       <item>
         <title>{{ doc.title | xml_escape }}</title>
         <description>{{ doc.excerpt | default: doc.content | xml_escape }}</description>
+        <content:encoded><![CDATA[
+          {{ doc.content }}
+        ]]></content:encoded>
         <pubDate>{{ (doc.last_modified_at | default: doc.date) | date_to_rfc822 }}</pubDate>
         <link>{{ host }}{{ doc.url }}</link>
         <guid isPermaLink="true">{{ host }}{{ doc.url }}</guid>
