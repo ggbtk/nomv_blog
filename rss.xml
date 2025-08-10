@@ -24,12 +24,13 @@ permalink: /rss.xml
   {%- endcomment -%}
   {% assign all_docs = all_docs | where_exp: "d", "d.output != false" %}
   {% assign all_docs = all_docs | sort: "date" | reverse %}
+  {% assign feed_path = "/feed.xml" %} <!-- 피드경로 명시 -->
 
   <channel>
     <title>{{ site.title | xml_escape }}</title>
     <description>{{ site.description | xml_escape }}</description>
-    <link>{{ host }}/</link>
-    <atom:link href="{{ host }}/rss.xml" rel="self" type="application/rss+xml"/>
+    <link>{{ site.url }}{{ site.baseurl }}/</link>
+    <atom:link href="{{ feed_path | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
