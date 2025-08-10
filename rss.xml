@@ -5,58 +5,48 @@ permalink: /rss.xml
 ---
 
 <?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  {% assign host = site.url | append: site.baseurl %}
-  {% assign limit_n = site.feed.posts_limit | default: 20 %}
-
-  {%- comment -%}
-    1) 모든 문서 수집: posts + 기타 컬렉션(cases 등)
-  {%- endcomment -%}
-  {% assign all_docs = site.posts %}
-  {% for coll in site.collections %}
-    {% unless coll.label == "posts" %}
-      {% assign all_docs = all_docs | concat: coll.docs %}
-    {% endunless %}
-  {% endfor %}
-
-  {%- comment -%}
-    2) 출력 가능한 것만, 날짜 역순 정렬
-  {%- endcomment -%}
-  {% assign all_docs = all_docs | where_exp: "d", "d.output != false" %}
-  {% assign all_docs = all_docs | sort: "date" | reverse %}
-  {% assign feed_path = "/feed.xml" %} <!-- 피드경로 명시 -->
-
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>{{ site.title | xml_escape }}</title>
-    <description>{{ site.description | xml_escape }}</description>
     <link>{{ site.url }}{{ site.baseurl }}/</link>
-    <atom:link href="{{ feed_path | prepend: site.baseurl | prepend: site.url }}" rel="self" type="application/rss+xml"/>
-    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
+    <description>{{ site.description | strip_html | xml_escape }}</description>
+    <language>ko-KR</language>
+    <atom:link href="{{ site.url }}{{ site.baseurl }}/rss.xml" rel="self" type="application/rss+xml"/>
     <lastBuildDate>{{ site.time | date_to_rfc822 }}</lastBuildDate>
-    <generator>Jekyll v{{ jekyll.version }}</generator>
+    <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
 
-    {%- for doc in all_docs limit: limit_n -%}
+    {%- assign limit_n = site.feed.posts_limit | default: 20 -%}
+    {%- assign all = site.posts -%}
+    {%- for coll in site.collections -%}
+      {%- unless coll.label == "posts" -%}
+        {%- assign all = all | concat: coll.docs -%}
+      {%- endunless -%}
+    {%- endfor -%}
+    {%- assign all = all | where_exp: "d", "d.output != false" | sort: "date" | reverse -%}
+
+    {%- for doc in all limit: limit_n -%}
       <item>
         <title>{{ doc.title | xml_escape }}</title>
-        <description>{{ doc.excerpt | default: doc.content | xml_escape }}</description>
-        <content:encoded><![CDATA[
-          {{ doc.content }}
-        ]]></content:encoded>
+        <link>{{ site.url }}{{ site.baseurl }}{{ doc.url }}</link>
+        <guid isPermaLink="true">{{ site.url }}{{ site.baseurl }}{{ doc.url }}</guid>
         <pubDate>{{ (doc.last_modified_at | default: doc.date) | date_to_rfc822 }}</pubDate>
-        <link>{{ host }}{{ doc.url }}</link>
-        <guid isPermaLink="true">{{ host }}{{ doc.url }}</guid>
 
-        {%- if doc.tags -%}
-          {%- for tag in doc.tags -%}
-            <category>{{ tag | xml_escape }}</category>
-          {%- endfor -%}
-        {%- endif -%}
+        <!-- 요약은 텍스트 -->
+        <description>{{ doc.excerpt | default: doc.content | strip_html | truncate: 300 | xml_escape }}</description>
 
-        {%- if doc.categories -%}
-          {%- for cat in doc.categories -%}
-            <category>{{ cat | xml_escape }}</category>
-          {%- endfor -%}
-        {%- endif -%}
+        <!-- 전체 본문은 HTML 그대로 (CDATA) -->
+        <content:encoded><![CDATA[
+{{ doc.content }}
+        ]]></content:encoded>
+
+        {%- if doc.tags -%}{%- for tag in doc.tags -%}
+          <category>{{ tag | xml_escape }}</category>
+        {%- endfor -%}{%- endif -%}
+        {%- if doc.categories -%}{%- for cat in doc.categories -%}
+          <category>{{ cat | xml_escape }}</category>
+        {%- endfor -%}{%- endif -%}
       </item>
     {%- endfor -%}
   </channel>
