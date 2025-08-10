@@ -1,0 +1,50 @@
+---
+layout: null
+sitemap: false
+permalink: /sitemap.xml
+---
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  {% assign host = "https://자동차대출.kr" %}
+
+  {%- comment -%} 개별 페이지 {%- endcomment -%}
+  {%- for p in site.pages -%}
+    {%- if p.sitemap != false and p.permalink != "/sitemap.xml" -%}
+      <url>
+        <loc>{{ host }}{{ p.url }}</loc>
+        {%- if p.last_modified_at -%}
+          <lastmod>{{ p.last_modified_at | date_to_xmlschema }}</lastmod>
+        {%- elsif p.date -%}
+          <lastmod>{{ p.date | date_to_xmlschema }}</lastmod>
+        {%- endif -%}
+      </url>
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- comment -%} 포스트 {%- endcomment -%}
+  {%- for post in site.posts -%}
+    <url>
+      <loc>{{ host }}{{ post.url }}</loc>
+      <lastmod>{{ post.date | date_to_xmlschema }}</lastmod>
+    </url>
+  {%- endfor -%}
+
+  {%- comment -%} 다른 컬렉션 (cases 포함) {%- endcomment -%}
+  {%- for coll in site.collections -%}
+    {%- unless coll.label == "posts" -%}
+      {%- for doc in coll.docs -%}
+        {%- if doc.output != false -%}
+          <url>
+            <loc>{{ host }}{{ doc.url }}</loc>
+            {%- if doc.last_modified_at -%}
+              <lastmod>{{ doc.last_modified_at | date_to_xmlschema }}</lastmod>
+            {%- elsif doc.date -%}
+              <lastmod>{{ doc.date | date_to_xmlschema }}</lastmod>
+            {%- endif -%}
+          </url>
+        {%- endif -%}
+      {%- endfor -%}
+    {%- endunless -%}
+  {%- endfor -%}
+</urlset>
