@@ -19,18 +19,7 @@ layout: default
       {% endfor %}
       {% endif %}
     </div>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1932666772433362"
-     crossorigin="anonymous"></script>
-<!-- dp -->
-<ins class="adsbygoogle"
-     style="display:block"
-     data-ad-client="ca-pub-1932666772433362"
-     data-ad-slot="1397566829"
-     data-ad-format="auto"
-     data-full-width-responsive="true"></ins>
-<script>
-     (adsbygoogle = window.adsbygoogle || []).push({});
-</script>
+    {% include ad-display.html %}
     {% if page.image %}
       <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-auto mb-6 rounded">
     {% endif %}
