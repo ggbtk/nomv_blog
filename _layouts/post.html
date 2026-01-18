@@ -19,7 +19,6 @@ layout: default
       {% endfor %}
       {% endif %}
     </div>
-    {% include ad-display.html %}
     {% if page.image %}
       <img src="{{ page.image }}" alt="{{ page.title }}" class="w-full h-auto mb-6 rounded">
     {% endif %}
@@ -37,7 +36,6 @@ layout: default
       </div>
     {% endif %}
   </article>
-  {% include dp_ad.html.html %}
   <hr class="my-10">
   <h3 class="text-xl font-bold mb-4">📌 추천글</h3>
   <div class="grid md:grid-cols-3 gap-6">
